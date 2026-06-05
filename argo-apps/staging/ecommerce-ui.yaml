@@ -8,11 +8,10 @@ spec:
   source:
     repoURL: https://github.com/mohamedmagdy122/ecommerce-gitops
     targetRevision: main
-    path: .
+    path: helm-frontend
     helm:
-      chart: ecommerce-frontend
       valueFiles:
-        - environments/stg/ecommerce-ui.yaml
+        - ../../environments/stg/ecommerce-ui.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: ecommerce

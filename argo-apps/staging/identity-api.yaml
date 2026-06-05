@@ -8,11 +8,10 @@ spec:
   source:
     repoURL: https://github.com/mohamedmagdy122/ecommerce-gitops
     targetRevision: main
-    path: .
+    path: helm-backend
     helm:
-      chart: ecommerce-backend
       valueFiles:
-        - environments/stg/identity-api.yaml
+        - ../../environments/stg/identity-api.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: ecommerce
