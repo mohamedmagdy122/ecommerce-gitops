@@ -1,0 +1,17 @@
+image:
+  name: ghcr.io/mohamedmagdy122/ecommerce-frontend
+  tag: latest
+
+replicas: 2
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  host: ecommerce.local
+
+pvc:
+  size: 1Gi
+  mountPath: /var/log/nginx
+  storageClass: gp2

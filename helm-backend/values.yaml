@@ -1,0 +1,38 @@
+image:
+  name: ghcr.io/mohamedmagdy122/identity-api
+  tag: latest
+
+replicas: 2
+
+service:
+  type: ClusterIP
+  port: 8080
+
+pvc:
+  size: 1Gi
+  mountPath: /app/logs
+  storageClass: gp2
+
+config:
+  - name: Jwt__Issuer
+    value: ecommerce-identity
+  - name: Jwt__Audience
+    value: ecommerce
+  - name: ASPNETCORE_URLS
+    value: http://+:8080
+
+externalSecret:
+  enabled: false
+  secretStoreName: aws-secrets-store
+  remoteSecretName: ecommerce-staging-db-password
+  keys:
+    - localKey: ConnectionStrings__MySQL
+      remoteKey: connection_string
+    - localKey: Jwt__Key
+      remoteKey: jwt_key
+
+migration:
+  enabled: false
+  dbHost: localhost
+  dbUser: admin
+  dbPassEnvKey: DB_PASS
