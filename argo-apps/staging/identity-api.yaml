@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: identity-api
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/mohamedmagdy122/ecommerce-gitops
+    targetRevision: main
+    path: .
+    helm:
+      chart: ecommerce-backend
+      valueFiles:
+        - environments/stg/identity-api.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: ecommerce
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

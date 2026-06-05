@@ -1,0 +1,26 @@
+image:
+  name: ghcr.io/mohamedmagdy122/order-api
+  tag: latest
+replicas: 1
+service:
+  type: ClusterIP
+  port: 8080
+pvc:
+  size: 1Gi
+  mountPath: /app/logs
+  storageClass: gp2
+migration:
+  enabled: false
+config:
+  - name: ASPNETCORE_URLS
+    value: "http://+:8080"
+  - name: Jwt__Issuer
+    value: "ecommerce-identity"
+  - name: Jwt__Audience
+    value: "ecommerce"
+  - name: ConnectionStrings__MySQL
+    value: "Server=ecommerce-staging-db.ca10ugac4rja.us-east-1.rds.amazonaws.com;Port=3306;Database=ecommerce;User=admin;Password=QMeDcpx2Camjdb0jNNnWmlmAAB4TakQT;"
+  - name: Jwt__Key
+    value: "ThisIsA32CharOrLongerSuperSecretKeyABC"
+  - name: CatalogApi__BaseUrl
+    value: "http://catalog-api:8080"
