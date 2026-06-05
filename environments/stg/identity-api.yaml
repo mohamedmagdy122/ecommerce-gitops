@@ -1,6 +1,6 @@
 image:
   name: ghcr.io/mohamedmagdy122/identity-api
-  tag: latest
+  tag: sha-26b317ea00a4bf8b748ee15be6a6b38862281297
 replicas: 1
 service:
   type: ClusterIP
