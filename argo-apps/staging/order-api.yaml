@@ -11,7 +11,7 @@ spec:
     path: helm-backend
     helm:
       valueFiles:
-        - ../../environments/stg/order-api.yaml
+        - ../environments/stg/order-api.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: ecommerce

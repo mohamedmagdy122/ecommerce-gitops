@@ -11,7 +11,7 @@ spec:
     path: helm-backend
     helm:
       valueFiles:
-        - ../../environments/stg/identity-api.yaml
+        - ../environments/stg/identity-api.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: ecommerce

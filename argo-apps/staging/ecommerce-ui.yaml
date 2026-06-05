@@ -11,7 +11,7 @@ spec:
     path: helm-frontend
     helm:
       valueFiles:
-        - ../../environments/stg/ecommerce-ui.yaml
+        - ../environments/stg/ecommerce-ui.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: ecommerce
