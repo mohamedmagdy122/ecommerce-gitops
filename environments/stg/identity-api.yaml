@@ -10,10 +10,7 @@ pvc:
   mountPath: /app/logs
   storageClass: gp2
 migration:
-  enabled: true
-  dbHost: ecommerce-staging-db.ca10ugac4rja.us-east-1.rds.amazonaws.com
-  dbUser: admin
-  dbPassEnvKey: DB_PASS
+  enabled: false
 config:
   - name: ASPNETCORE_URLS
     value: "http://+:8080"
@@ -25,5 +22,3 @@ config:
     value: "Server=ecommerce-staging-db.ca10ugac4rja.us-east-1.rds.amazonaws.com;Port=3306;Database=ecommerce;User=admin;Password=QMeDcpx2Camjdb0jNNnWmlmAAB4TakQT;"
   - name: Jwt__Key
     value: "ThisIsA32CharOrLongerSuperSecretKeyABC"
-  - name: DB_PASS
-    value: "QMeDcpx2Camjdb0jNNnWmlmAAB4TakQT"
