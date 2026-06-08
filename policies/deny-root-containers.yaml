@@ -4,20 +4,18 @@ metadata:
   name: deny-root-containers
 spec:
   validationFailureAction: Enforce
+  background: false
   rules:
-    - name: deny-root
+    - name: deny-privileged
       match:
-        resources:
-          kinds:
-            - Pod
+        any:
+        - resources:
+            kinds:
+              - Pod
       validate:
-        message: "Containers must not run as root or with privileged mode"
-        deny:
-          conditions:
-            any:
-              - key: "{{ request.object.spec.containers[].securityContext.runAsUser }}"
-                operator: Equals
-                value: 0
-              - key: "{{ request.object.spec.containers[].securityContext.privileged }}"
-                operator: Equals
-                value: true
+        message: "Privileged containers are not allowed"
+        pattern:
+          spec:
+            containers:
+            - =(securityContext):
+                =(privileged): false
