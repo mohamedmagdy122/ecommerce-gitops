@@ -1,6 +1,6 @@
 image:
   name: ghcr.io/mohamedmagdy122/ecommerce-frontend
-  tag: latest
+  tag: sha-e06a3c450b0633f15f423d313a57d2333573b4a9
 replicas: 1
 service:
   type: ClusterIP
