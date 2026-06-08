@@ -1,6 +1,6 @@
 image:
   name: ghcr.io/mohamedmagdy122/catalog-api
-  tag: sha-b418be7fda3034fdaaa3a481b20810f09ae51b4b
+  tag: sha-a0cf4104fd4a58470e86bde7a5a8a86b4c020df1
 replicas: 1
 service:
   type: ClusterIP
