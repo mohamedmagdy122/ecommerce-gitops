@@ -1,0 +1,16 @@
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: catalog-api-authz
+  namespace: ecommerce
+spec:
+  selector:
+    matchLabels:
+      app: catalog-api
+  action: ALLOW
+  rules:
+    - from:
+        - source:
+            principals:
+              - "cluster.local/ns/ecommerce/sa/ecommerce-ui"
+              - "cluster.local/ns/ecommerce/sa/order-api"

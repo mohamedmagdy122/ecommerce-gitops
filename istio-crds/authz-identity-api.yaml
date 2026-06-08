@@ -1,0 +1,15 @@
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: identity-api-authz
+  namespace: ecommerce
+spec:
+  selector:
+    matchLabels:
+      app: identity-api
+  action: ALLOW
+  rules:
+    - from:
+        - source:
+            principals:
+              - "cluster.local/ns/ecommerce/sa/ecommerce-ui"
