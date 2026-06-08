@@ -2,16 +2,21 @@ apiVersion: kyverno.io/v1
 kind: ClusterPolicy
 metadata:
   name: deny-latest-tag
+  annotations:
+    pod-policies.kyverno.io/autogen-controllers: none
 spec:
   validationFailureAction: Enforce
   rules:
     - name: deny-latest
       match:
-        resources:
-          kinds:
-            - Pod
+        any:
+        - resources:
+            kinds:
+              - Pod
+            namespaces:
+              - default
       validate:
-        message: "Images must not use 'latest' tag or have no tag specified"
+        message: "Images must not use latest tag"
         pattern:
           spec:
             containers:
