@@ -1,0 +1,23 @@
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: deny-root-containers
+spec:
+  validationFailureAction: Enforce
+  rules:
+    - name: deny-root
+      match:
+        resources:
+          kinds:
+            - Pod
+      validate:
+        message: "Containers must not run as root or with privileged mode"
+        deny:
+          conditions:
+            any:
+              - key: "{{ request.object.spec.containers[].securityContext.runAsUser }}"
+                operator: Equals
+                value: 0
+              - key: "{{ request.object.spec.containers[].securityContext.privileged }}"
+                operator: Equals
+                value: true
